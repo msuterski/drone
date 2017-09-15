@@ -207,7 +207,7 @@ func convertPushHook(from *webhook) *model.Build {
 		// For tags, if the base_ref (tag's base branch) is set, we're using it
 		// as build's branch so that we can filter events base on it
 		if strings.HasPrefix(from.BaseRef, "refs/heads/") {
-			build.Branch = strings.Replace(from.BaseRef, "refs/heads/", "", -1)
+			build.Branch = strings.TrimPrefix(from.BaseRef, "refs/heads/")
 		}
 	}
 	return build
